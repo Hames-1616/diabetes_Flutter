@@ -4,6 +4,7 @@ import 'package:diabetes_app/core/navigation_page.dart';
 import 'package:diabetes_app/core/providers.dart';
 import 'package:diabetes_app/core/responsive_text.dart';
 import 'package:diabetes_app/core/themes.dart';
+import 'package:diabetes_app/features/auth/models/createUser_model.dart';
 import 'package:diabetes_app/features/auth/repos/auth_repo.dart';
 import 'package:diabetes_app/features/auth/screens/register_screen.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +107,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 highlightColor: Colors.transparent,
                 onTap: () async{
                   var s = await AuthRepo(cdio: ref.watch(dioProvider))
-                      .createUser("haamid", "hames@gmail.com", "123456");
+                      .createUser(CreateUser(username:"haamid",email: "pass",password: "asd"));
                   print(s.fold((l) => l.message, (r) => r));
                 },
                 child: Container(

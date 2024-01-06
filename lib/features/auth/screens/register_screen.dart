@@ -1,7 +1,11 @@
 import 'package:diabetes_app/core/custom_textfield.dart';
 import 'package:diabetes_app/core/dimensions.dart';
+import 'package:diabetes_app/core/navigation_page.dart';
 import 'package:diabetes_app/core/responsive_text.dart';
 import 'package:diabetes_app/core/themes.dart';
+import 'package:diabetes_app/features/auth/controller/authRepoController.dart';
+import 'package:diabetes_app/features/auth/models/createUser_model.dart';
+import 'package:diabetes_app/features/auth/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -46,8 +50,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   Container(
                       alignment: Alignment.center,
                       width: MediaQuery.of(context).size.width,
-                      height:
-                          MediaQuery.of(context).size.height / hei(context, 100),
+                      height: MediaQuery.of(context).size.height /
+                          hei(context, 100),
                       color: secondaryColor),
                   Container(
                     padding: const EdgeInsets.only(bottom: 25),
@@ -72,8 +76,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   Container(
                       alignment: Alignment.center,
                       width: MediaQuery.of(context).size.width,
-                      height:
-                          MediaQuery.of(context).size.height / hei(context, 250),
+                      height: MediaQuery.of(context).size.height /
+                          hei(context, 250),
                       color: primaryColor),
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -130,18 +134,37 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 InkWell(
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
-                  onTap: () {
-                    if(regkey.currentState!.validate()){}
+                  onTap: () async {
+                    if (regkey.currentState!.validate()) {
+                      FocusManager.instance.primaryFocus?.unfocus();
+                      final result = await ref
+                          .watch(authRepoControllerProvider.notifier)
+                          .createAccount(
+                              CreateUser(
+                                  username: username.text,
+                                  email: email.text,
+                                  password: password.text),
+                              context);
+                      if (result) {
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushReplacement(context, createRoute(const LoginScreen()));
+                      }
+                    }
                   },
                   child: Container(
                     alignment: Alignment.center,
-                    height: MediaQuery.of(context).size.height / hei(context, 50),
+                    height:
+                        MediaQuery.of(context).size.height / hei(context, 50),
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.only(right: 20, left: 20),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
                         color: primaryColor),
-                    child: ResponsiveText(
+                    child: ref.watch(authRepoControllerProvider)? SizedBox(
+                      height: MediaQuery.of(context).size.height/hei(context, 20),
+                      width: MediaQuery.of(context).size.width/wid(context, 20),
+                      child: const CircularProgressIndicator()):
+                    ResponsiveText(
                       textAlign: TextAlign.center,
                       text: "Register",
                       style: const TextStyle(
@@ -152,8 +175,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height /
-                                hei(context, 10),
+                  height: MediaQuery.of(context).size.height / hei(context, 10),
                 ),
                 SizedBox(height: MediaQuery.of(context).viewInsets.bottom)
               ],

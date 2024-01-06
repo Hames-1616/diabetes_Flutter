@@ -38,6 +38,7 @@ dependencies:
   flutter_riverpod: ^2.4.9
   fpdart: ^1.1.0
   dio: ^5.4.0
+  animated_snack_bar: ^0.4.0
 
 dev_dependencies:
   flutter_test:
