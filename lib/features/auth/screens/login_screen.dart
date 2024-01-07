@@ -1,11 +1,10 @@
 import 'package:diabetes_app/core/custom_textfield.dart';
 import 'package:diabetes_app/core/dimensions.dart';
 import 'package:diabetes_app/core/navigation_page.dart';
-import 'package:diabetes_app/core/providers.dart';
 import 'package:diabetes_app/core/responsive_text.dart';
 import 'package:diabetes_app/core/themes.dart';
-import 'package:diabetes_app/features/auth/models/createUser_model.dart';
-import 'package:diabetes_app/features/auth/repos/auth_repo.dart';
+import 'package:diabetes_app/features/auth/controller/authRepoController.dart';
+import 'package:diabetes_app/features/auth/screens/HomePage.dart';
 import 'package:diabetes_app/features/auth/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +18,7 @@ class LoginScreen extends ConsumerStatefulWidget {
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   final email = TextEditingController();
+  final password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +97,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           hintText: "Password",
                           icon: Icons.password_rounded,
                           onChanged: (value) {},
-                          con: email)
+                          con: password)
                     ],
                   ),
                 ),
@@ -105,10 +105,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               InkWell(
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
-                onTap: () async{
-                  var s = await AuthRepo(cdio: ref.watch(dioProvider))
-                      .createUser(CreateUser(username:"haamid",email: "pass",password: "asd"));
-                  print(s.fold((l) => l.message, (r) => r));
+                onTap: () async {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  var s = await ref
+                      .watch(authRepoControllerProvider.notifier)
+                      .loginaccount(email.text, password.text, context);
+                  if (s) {
+                    // ignore: use_build_context_synchronously
+                    Navigator.pushReplacement(context, createRoute(const HomePage()));
+                  }
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -118,7 +123,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: primaryColor),
-                  child: ResponsiveText(
+                  child:ref.watch(authRepoControllerProvider)? SizedBox(
+                      height: MediaQuery.of(context).size.height/hei(context, 20),
+                      width: MediaQuery.of(context).size.width/wid(context, 20),
+                      child: const CircularProgressIndicator()): 
+                  ResponsiveText(
                     textAlign: TextAlign.center,
                     text: "Login",
                     style: const TextStyle(

@@ -21,7 +21,16 @@ class AuthRepo {
       return right("success");
     } on DioException catch (e) {
       return left(Failure(e.response?.data["detail"]));
-      //
+    }
+  }
+
+  FutureEither<String> loginUser(String email, String password) async {
+    try {
+        await dio
+          .get("$url/login", data: {"email": email, "password": password});
+      return right("success");
+    } on DioException catch (e) {
+      return left(Failure(e.response?.data["detail"]));
     }
   }
 }
