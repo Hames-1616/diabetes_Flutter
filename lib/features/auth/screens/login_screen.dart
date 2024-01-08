@@ -5,6 +5,7 @@ import 'package:diabetes_app/core/responsive_text.dart';
 import 'package:diabetes_app/core/themes.dart';
 import 'package:diabetes_app/features/auth/controller/authRepoController.dart';
 import 'package:diabetes_app/features/auth/screens/HomePage.dart';
+import 'package:diabetes_app/features/auth/screens/Info_Intake.dart';
 import 'package:diabetes_app/features/auth/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -112,7 +113,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       .loginaccount(email.text, password.text, context);
                   if (s) {
                     // ignore: use_build_context_synchronously
-                    Navigator.pushReplacement(context, createRoute(const HomePage()));
+                    Navigator.pushReplacement(context, createRoute(const PreferencesInfo()));
                   }
                 },
                 child: Container(
