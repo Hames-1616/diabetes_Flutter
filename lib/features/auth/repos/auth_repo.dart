@@ -14,7 +14,7 @@ class AuthRepo {
 
   AuthRepo({required Dio cdio}) : dio = cdio;
 
-  final url = "https://diabetes-fast.onrender.com";
+  final url = "https://pear-walkingstick-gear.cyclic.app";
   FutureEither<String> createUser(CreateUser user) async {
     try {
       await dio.post("$url/createUser", data: user.toJson());
@@ -26,8 +26,9 @@ class AuthRepo {
 
   FutureEither<String> loginUser(String email, String password) async {
     try {
-        await dio
+      final response = await dio
           .get("$url/login", data: {"email": email, "password": password});
+      print(response.data);
       return right("success");
     } on DioException catch (e) {
       return left(Failure(e.response?.data["detail"]));

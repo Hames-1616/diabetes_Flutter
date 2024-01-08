@@ -4,7 +4,6 @@ import 'package:diabetes_app/core/navigation_page.dart';
 import 'package:diabetes_app/core/responsive_text.dart';
 import 'package:diabetes_app/core/themes.dart';
 import 'package:diabetes_app/features/auth/controller/authRepoController.dart';
-import 'package:diabetes_app/features/auth/screens/HomePage.dart';
 import 'package:diabetes_app/features/auth/screens/Info_Intake.dart';
 import 'package:diabetes_app/features/auth/screens/register_screen.dart';
 import 'package:flutter/material.dart';

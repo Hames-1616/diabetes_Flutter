@@ -155,6 +155,62 @@ class _PreferencesInfoState extends ConsumerState<PreferencesInfo> {
               );
             },
           ),
+          ChipsChoice<int>.single(
+            value: blood,
+            onChanged: (val) => setState(() => blood = val),
+            choiceItems: C2Choice.listFrom<int, String>(
+              source: ["A", "B", "AB", "O"],
+              value: (i, v) => i,
+              label: (i, v) => v,
+            ),
+            choiceBuilder: (item, i) {
+              return AnimatedContainer(
+                duration: const Duration(milliseconds: 450),
+                height: MediaQuery.of(context).size.height / hei(context, 80),
+                width: MediaQuery.of(context).size.width / wid(context, 75),
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    color: item.selected ? accentColor : secondaryColor,
+                    borderRadius: BorderRadius.circular(25)),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () {
+                    setState(() {
+                      item.select!(!item.selected);
+                    });
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          margin: const EdgeInsets.all(15),
+                          child: item.label == "A"
+                              ? Image.asset(
+                                  "assets/images/a.png",
+                                  color: Colors.white,
+                                )
+                              : item.label == "B"
+                                  ? Image.asset(
+                                      "assets/images/b.png",
+                                      color: Colors.white,
+                                    )
+                                  : item.label == "AB"
+                                      ? Image.asset(
+                                          "assets/images/ab.png",
+                                          color: Colors.white,
+                                        )
+                                      : Image.asset(
+                                          "assets/images/o.png",
+                                          color: Colors.white,
+                                        )),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
