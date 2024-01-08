@@ -28,8 +28,7 @@ class AuthRepo {
     try {
       final response = await dio
           .get("$url/login", data: {"email": email, "password": password});
-      print(response.data);
-      return right("success");
+      return right(response.data["token"]);
     } on DioException catch (e) {
       return left(Failure(e.response?.data["detail"]));
     }

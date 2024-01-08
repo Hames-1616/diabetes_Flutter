@@ -2,6 +2,7 @@ import 'package:chips_choice/chips_choice.dart';
 import 'package:diabetes_app/core/dimensions.dart';
 import 'package:diabetes_app/core/responsive_text.dart';
 import 'package:diabetes_app/core/themes.dart';
+import 'package:diabetes_app/features/auth/controller/authRepoController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,6 +18,7 @@ class _PreferencesInfoState extends ConsumerState<PreferencesInfo> {
   int gender = 0;
   int type = 0;
   int blood = 0;
+  List<String> values = ["Male", "Type 1", "A"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,37 +26,35 @@ class _PreferencesInfoState extends ConsumerState<PreferencesInfo> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-              alignment: Alignment.center,
-              child: ResponsiveText(
-                text: "Basic Information",
-                style: const TextStyle(
-                    fontFamily: "poppins",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24),
-              )),
-          Container(
-              margin: const EdgeInsets.only(right: 10, left: 10, top: 7),
-              alignment: Alignment.center,
-              child: ResponsiveText(
-                textAlign: TextAlign.center,
-                text:
-                    "Select Appropriate Information about yourself like your Gender, Diabetes Type and Blood Group",
-                style: const TextStyle(
-                    color: Colors.white38, fontFamily: "poppins", fontSize: 15),
-              )),
+          Column(
+            children: [
+              Container(
+                  alignment: Alignment.center,
+                  child: ResponsiveText(
+                    text: "Basic Information",
+                    style: const TextStyle(
+                        fontFamily: "poppins",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24),
+                  )),
+              Container(
+                  margin: const EdgeInsets.only(right: 10, left: 10, top: 7),
+                  alignment: Alignment.center,
+                  child: ResponsiveText(
+                    textAlign: TextAlign.center,
+                    text:
+                        "Select Appropriate Information about yourself like your Gender, Diabetes Type and Blood Group",
+                    style: const TextStyle(
+                        color: Colors.white38,
+                        fontFamily: "poppins",
+                        fontSize: 15),
+                  )),
+            ],
+          ),
           ChipsChoice<int>.single(
             value: gender,
             onChanged: (val) => setState(() => gender = val),
@@ -79,6 +79,7 @@ class _PreferencesInfoState extends ConsumerState<PreferencesInfo> {
                   onTap: () {
                     setState(() {
                       item.select!(!item.selected);
+                      values[0] = item.label;
                     });
                   },
                   child: Column(
@@ -129,6 +130,7 @@ class _PreferencesInfoState extends ConsumerState<PreferencesInfo> {
                   onTap: () {
                     setState(() {
                       item.select!(!item.selected);
+                      values[1] = item.label;
                     });
                   },
                   child: Column(
@@ -179,6 +181,7 @@ class _PreferencesInfoState extends ConsumerState<PreferencesInfo> {
                   onTap: () {
                     setState(() {
                       item.select!(!item.selected);
+                      values[2] = item.label;
                     });
                   },
                   child: Column(
@@ -210,6 +213,38 @@ class _PreferencesInfoState extends ConsumerState<PreferencesInfo> {
                 ),
               );
             },
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: MediaQuery.of(context).size.height / hei(context, 50),
+            width: MediaQuery.of(context).size.width,
+            margin:
+                const EdgeInsets.only(right: 40, left: 40, top: 20, bottom: 40),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50), color: accentColor),
+            child: InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              onTap: () {},
+              child: ref.watch(authRepoControllerProvider)
+                  ? SizedBox(
+                      height:
+                          MediaQuery.of(context).size.height / hei(context, 20),
+                      width:
+                          MediaQuery.of(context).size.width / wid(context, 20),
+                      child: CircularProgressIndicator(
+                        color: primaryColor,
+                      ))
+                  : ResponsiveText(
+                      textAlign: TextAlign.center,
+                      text: "Proceed",
+                      style: const TextStyle(
+                          fontFamily: "poppins",
+                          fontSize: 15,
+                          color: Colors.white),
+                    ),
+            ),
           ),
         ],
       ),
