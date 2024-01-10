@@ -1,7 +1,9 @@
 import 'package:animated_snack_bar/animated_snack_bar.dart';
+import 'package:diabetes_app/core/navigation_page.dart';
 import 'package:diabetes_app/core/providers.dart';
 import 'package:diabetes_app/features/auth/models/createUser_model.dart';
 import 'package:diabetes_app/features/auth/repos/auth_repo.dart';
+import 'package:diabetes_app/features/auth/screens/Info_Intake.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,23 +35,21 @@ class AuthRepoController extends StateNotifier<bool> {
     }, (r) => true);
   }
 
-  Future<bool> loginaccount(
+  void loginaccount(
       String email, String password, BuildContext context) async {
     state = true;
     final s = await authrepo.loginUser(email, password);
     state = false;
-    return s.fold((l) {
+    s.fold((l) {
       AnimatedSnackBar.material(l.message,
               type: AnimatedSnackBarType.warning,
               animationDuration: const Duration(milliseconds: 500),
               mobilePositionSettings:
                   const MobilePositionSettings(topOnAppearance: 100))
           .show(context);
-      return false;
-    }, (r) async {
-      final remember = await SharedPreferences.getInstance();
-      await remember.setString("token", r);
-      return true;
+      
+    }, (r) {
+      Navigator.pushReplacement(context, createRoute(const PreferencesInfo()));
     });
   }
 

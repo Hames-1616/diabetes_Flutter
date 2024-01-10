@@ -5,6 +5,7 @@ import 'package:diabetes_app/features/auth/models/createUser_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final authRepoProvider =
     Provider((ref) => AuthRepo(cdio: ref.watch(dioProvider)));
@@ -28,7 +29,11 @@ class AuthRepo {
     try {
       final response = await dio
           .get("$url/login", data: {"email": email, "password": password});
-      return right(response.data["token"]);
+
+      final token = response.data["token"];
+      final remember = await SharedPreferences.getInstance();
+      await remember.setString("token", token);
+      return right("");
     } on DioException catch (e) {
       return left(Failure(e.response?.data["detail"]));
     }
