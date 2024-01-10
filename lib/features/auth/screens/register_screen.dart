@@ -1,11 +1,9 @@
 import 'package:diabetes_app/core/custom_textfield.dart';
 import 'package:diabetes_app/core/dimensions.dart';
-import 'package:diabetes_app/core/navigation_page.dart';
 import 'package:diabetes_app/core/responsive_text.dart';
 import 'package:diabetes_app/core/themes.dart';
 import 'package:diabetes_app/features/auth/controller/authRepoController.dart';
 import 'package:diabetes_app/features/auth/models/createUser_model.dart';
-import 'package:diabetes_app/features/auth/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -134,10 +132,10 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 InkWell(
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
-                  onTap: () async {
+                  onTap: ()  {
                     if (regkey.currentState!.validate()) {
                       FocusManager.instance.primaryFocus?.unfocus();
-                      final result = await ref
+                       ref
                           .watch(authRepoControllerProvider.notifier)
                           .createAccount(
                               CreateUser(
@@ -145,10 +143,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                                   email: email.text,
                                   password: password.text),
                               context);
-                      if (result) {
-                        // ignore: use_build_context_synchronously
-                        Navigator.pushReplacement(context, createRoute(const LoginScreen()));
-                      }
                     }
                   },
                   child: Container(

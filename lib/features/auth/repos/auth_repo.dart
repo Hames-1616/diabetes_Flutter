@@ -19,7 +19,7 @@ class AuthRepo {
   FutureEither<String> createUser(CreateUser user) async {
     try {
       await dio.post("$url/createUser", data: user.toJson());
-      return right("success");
+      return right("");
     } on DioException catch (e) {
       return left(Failure(e.response?.data["detail"]));
     }
