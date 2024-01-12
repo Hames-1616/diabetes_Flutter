@@ -3,6 +3,7 @@ import 'package:diabetes_app/core/dimensions.dart';
 import 'package:diabetes_app/core/responsive_text.dart';
 import 'package:diabetes_app/core/themes.dart';
 import 'package:diabetes_app/features/auth/controller/authRepoController.dart';
+import 'package:diabetes_app/features/auth/models/basicInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -226,15 +227,19 @@ class _PreferencesInfoState extends ConsumerState<PreferencesInfo> {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               focusColor: Colors.transparent,
-              onTap: () {},
+              onTap: () {
+                ref
+                    .watch(authRepoControllerProvider.notifier)
+                    .setBasicInfo(BasicInfo(gender: values[0], variant: values[1], blood: values[2]), context);
+              },
               child: ref.watch(authRepoControllerProvider)
                   ? SizedBox(
                       height:
                           MediaQuery.of(context).size.height / hei(context, 20),
                       width:
                           MediaQuery.of(context).size.width / wid(context, 20),
-                      child: CircularProgressIndicator(
-                        color: primaryColor,
+                      child: const CircularProgressIndicator(
+                        color: Colors.white,
                       ))
                   : ResponsiveText(
                       textAlign: TextAlign.center,

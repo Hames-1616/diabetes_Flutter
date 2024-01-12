@@ -1,6 +1,7 @@
 import 'package:diabetes_app/core/Failure.dart';
 import 'package:diabetes_app/core/providers.dart';
 import 'package:diabetes_app/core/type_def.dart';
+import 'package:diabetes_app/features/auth/models/basicInfo.dart';
 import 'package:diabetes_app/features/auth/models/createUser_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,12 +9,13 @@ import 'package:fpdart/fpdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final authRepoProvider =
-    Provider((ref) => AuthRepo(cdio: ref.watch(dioProvider)));
+    Provider((ref) => AuthRepo(cdio: ref.watch(dioProvider),cref: ref));
 
 class AuthRepo {
   final Dio dio;
+  final ProviderRef ref;
 
-  AuthRepo({required Dio cdio}) : dio = cdio;
+  AuthRepo({required Dio cdio,required ProviderRef cref}) : dio = cdio,ref = cref;
 
   final url = "https://pear-walkingstick-gear.cyclic.app";
   FutureEither<String> createUser(CreateUser user) async {
@@ -33,6 +35,16 @@ class AuthRepo {
       final token = response.data["token"];
       final remember = await SharedPreferences.getInstance();
       await remember.setString("token", token);
+      return right("");
+    } on DioException catch (e) {
+      return left(Failure(e.response?.data["detail"]));
+    }
+  }
+
+  FutureEither<String> basicInfo(BasicInfo medDetails) async {
+    try {
+      dio.options.headers['token'] = await ref.watch(stringToken.future);
+      await dio.post("$url/basicInfo", data: medDetails.toJson());
       return right("");
     } on DioException catch (e) {
       return left(Failure(e.response?.data["detail"]));
