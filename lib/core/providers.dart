@@ -12,7 +12,7 @@ final stringToken = FutureProvider((ref) async {
 
 final basicInfoCheck = FutureProvider((ref) async {
   final token = await SharedPreferences.getInstance();
-  return token.getBool("info");
+  return token.getBool("basicToken");
 });
 
 final loginscreen = StateProvider<bool>((ref) => false);

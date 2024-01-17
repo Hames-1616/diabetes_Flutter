@@ -67,4 +67,14 @@ class AuthRepoController extends StateNotifier<bool> {
       ref.watch(loginscreen.notifier).state = false;
     }
   }
+
+  void checkBasicToken() async {
+    final basic = await SharedPreferences.getInstance();
+    final s = basic.getBool("basicToken");
+    if (s == true) {
+      ref.watch(basicInfoPassed.notifier).update((state) => true);
+    } else {
+      ref.watch(basicInfoPassed.notifier).update((state) => false);
+    }
+  }
 }
