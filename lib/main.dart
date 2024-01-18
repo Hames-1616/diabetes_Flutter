@@ -1,6 +1,7 @@
 import 'package:diabetes_app/core/providers.dart';
 import 'package:diabetes_app/core/themes.dart';
 import 'package:diabetes_app/features/auth/controller/authRepoController.dart';
+import 'package:diabetes_app/features/auth/screens/HomePage.dart';
 import 'package:diabetes_app/features/auth/screens/Info_Intake.dart';
 import 'package:diabetes_app/features/auth/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,11 +24,13 @@ class _MyAppState extends ConsumerState<MyApp> {
   void initState() {
     super.initState();
     ref.read(authRepoControllerProvider.notifier).checktoken();
+    ref.read(authRepoControllerProvider.notifier).checkBasicToken();
   }
 
   @override
   Widget build(BuildContext context) {
     final login = ref.watch(loginscreen);
+    final basicInfo = ref.watch(basicInfoPassed);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
       statusBarBrightness: Brightness.dark,
@@ -36,7 +39,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: darkmode,
-      home: login ? const PreferencesInfo(): const LoginScreen(),
+      home: login ? basicInfo ? const HomePage() : const PreferencesInfo() : const LoginScreen()
     );
   }
 }
