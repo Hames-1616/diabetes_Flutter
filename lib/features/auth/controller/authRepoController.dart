@@ -4,7 +4,7 @@ import 'package:diabetes_app/core/snackbar.dart';
 import 'package:diabetes_app/features/auth/models/basicInfo.dart';
 import 'package:diabetes_app/features/auth/models/createUser_model.dart';
 import 'package:diabetes_app/features/auth/repos/auth_repo.dart';
-import 'package:diabetes_app/features/auth/screens/HomePage.dart';
+import 'package:diabetes_app/features/home/screens/HomePage.dart';
 import 'package:diabetes_app/features/auth/screens/Info_Intake.dart';
 import 'package:diabetes_app/features/auth/screens/login_screen.dart';
 import 'package:flutter/material.dart';
