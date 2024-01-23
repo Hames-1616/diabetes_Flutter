@@ -140,17 +140,24 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ],
                 ),
               ),
-              Row(
+              const SizedBox(height: 15,),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ActivityBlock(),
+                      SizedBox(height: 10,),
                       ActivityBlock()
                     ],
                   ),
+                  SizedBox(width: 10,),
                   Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ActivityBlock(),
+                      SizedBox(height: 10,),
                       ActivityBlock()
                     ],
                   )

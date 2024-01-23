@@ -15,7 +15,8 @@ class _ActivityBlockState extends ConsumerState<ActivityBlock> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / hei(context, 40),
+      height: MediaQuery.of(context).size.height / hei(context, 80),
+      width: 170,
       decoration: BoxDecoration(
         color: secondaryColor,
         borderRadius: BorderRadius.circular(20)
