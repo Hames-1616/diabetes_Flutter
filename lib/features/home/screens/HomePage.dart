@@ -122,11 +122,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                     Container(
                       margin: const EdgeInsets.only(right: 45),
                       child: CircularPercentIndicator(
-                        radius: 65.0,
-                        lineWidth: 10.0,
+                        linearGradient: LinearGradient(colors: [primaryColor,greenAccent]),
+                        radius: 60.0,
+                        lineWidth: 12.0,
                         backgroundColor: primaryColor,
                         percent: ((eaten * 100) / 64) / 100,
-                        progressColor: greenAccent,
+                        // progressColor: greenAccent,
                         animation: true,
                         animationDuration: 800,
                         center: ResponsiveText(
