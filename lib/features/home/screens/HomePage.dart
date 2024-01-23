@@ -1,6 +1,7 @@
 import 'package:diabetes_app/core/dimensions.dart';
 import 'package:diabetes_app/core/responsive_text.dart';
 import 'package:diabetes_app/core/themes.dart';
+import 'package:diabetes_app/features/home/components/Activity_block.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -138,6 +139,22 @@ class _HomePageState extends ConsumerState<HomePage> {
                     ),
                   ],
                 ),
+              ),
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      ActivityBlock(),
+                      ActivityBlock()
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      ActivityBlock(),
+                      ActivityBlock()
+                    ],
+                  )
+                ],
               )
             ],
           ),
