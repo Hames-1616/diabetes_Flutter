@@ -142,27 +142,30 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ),
               ),
               const SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ActivityBlock(activityName: "Glucose",value: 136.toString(),subvalue: "mg/dl",),
-                      const SizedBox(height: 10,),
-                      ActivityBlock(activityName: "Pills",value: 1.toString(),subvalue: "taken",)
-                    ],
-                  ),
-                  const SizedBox(width: 10,),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ActivityBlock(activityName: "Activity",value: 150.toString(),subvalue: "Steps",),
-                      const SizedBox(height: 10,),
-                      ActivityBlock(activityName: "Carbs",value: 600.toString(),subvalue: "Cals",)
-                    ],
-                  )
-                ],
+              Container(
+                margin: const EdgeInsets.only(right: 20,left: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ActivityBlock(activityName: "Glucose",value: 136.toString(),subvalue: "mg/dl",),
+                        const SizedBox(height: 10,),
+                        ActivityBlock(activityName: "Pills",value: 1.toString(),subvalue: "taken",)
+                      ],
+                    ),
+                    const SizedBox(width: 10,),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ActivityBlock(activityName: "Activity",value: 150.toString(),subvalue: "Steps",),
+                        const SizedBox(height: 10,),
+                        ActivityBlock(activityName: "Carbs",value: 600.toString(),subvalue: "Cals",)
+                      ],
+                    )
+                  ],
+                ),
               )
             ],
           ),

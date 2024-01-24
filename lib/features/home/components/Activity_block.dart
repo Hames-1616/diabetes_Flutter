@@ -26,7 +26,7 @@ class _ActivityBlockState extends ConsumerState<ActivityBlock> {
       onTap: () {},
       child: Container(
         height: MediaQuery.of(context).size.height / hei(context, 80),
-        width: 170,
+        width: MediaQuery.of(context).size.width/2.3,
         decoration: BoxDecoration(
             color: secondaryColor, borderRadius: BorderRadius.circular(20)),
         child: Row(
