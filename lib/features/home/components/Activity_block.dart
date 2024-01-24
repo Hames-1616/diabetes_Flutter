@@ -5,60 +5,66 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ActivityBlock extends ConsumerStatefulWidget {
-  const ActivityBlock({super.key});
+  final String activityName;
+  final String value;
+  final String subvalue;
+  const ActivityBlock(
+      {super.key, required this.activityName, required this.value,required this.subvalue});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ActivityBlockState();
 }
 
 class _ActivityBlockState extends ConsumerState<ActivityBlock> {
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
+      onTap: () {},
       child: Container(
         height: MediaQuery.of(context).size.height / hei(context, 80),
         width: 170,
         decoration: BoxDecoration(
-          color: secondaryColor,
-          borderRadius: BorderRadius.circular(20)
-        ),
+            color: secondaryColor, borderRadius: BorderRadius.circular(20)),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ResponsiveText(
-                  text: "Glucose",
+                  text: widget.activityName,
                   style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15.5,
-                    fontFamily: "poppins"),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15.5,
+                      fontFamily: "poppins"),
                 ),
-      
                 Row(
                   children: [
                     ResponsiveText(
-                      text: "136 ",
+                      text: widget.value,
                       style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                        fontFamily: "poppins"),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                          fontFamily: "poppins"),
                     ),
+                    const SizedBox(width: 7.5,),
                     ResponsiveText(
-                      text: "mg/dl ",
+                      text: widget.subvalue,
                       style: const TextStyle(
-                        color: Colors.white60,
-                        fontSize: 13,
-                        fontFamily: "poppins"),
+                          color: Colors.white60,
+                          fontSize: 13,
+                          fontFamily: "poppins"),
                     ),
                   ],
                 )
               ],
             ),
-            Container()
+            Image.asset(
+              "assets/images/droplets.png",
+              height: 30,
+              width: 30,
+            )
           ],
         ),
       ),

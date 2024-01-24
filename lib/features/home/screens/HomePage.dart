@@ -141,24 +141,24 @@ class _HomePageState extends ConsumerState<HomePage> {
                 ),
               ),
               const SizedBox(height: 15,),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ActivityBlock(),
-                      SizedBox(height: 10,),
-                      ActivityBlock()
+                      ActivityBlock(activityName: "Glucose",value: 136.toString(),subvalue: "mg/dl",),
+                      const SizedBox(height: 10,),
+                      ActivityBlock(activityName: "Pills",value: 1.toString(),subvalue: "taken",)
                     ],
                   ),
-                  SizedBox(width: 10,),
+                  const SizedBox(width: 10,),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ActivityBlock(),
-                      SizedBox(height: 10,),
-                      ActivityBlock()
+                      ActivityBlock(activityName: "Activity",value: 150.toString(),subvalue: "Steps",),
+                      const SizedBox(height: 10,),
+                      ActivityBlock(activityName: "Carbs",value: 600.toString(),subvalue: "Cals",)
                     ],
                   )
                 ],
