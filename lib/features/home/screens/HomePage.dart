@@ -31,6 +31,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ResponsiveText(
                           text: "Hi Haamid!",
