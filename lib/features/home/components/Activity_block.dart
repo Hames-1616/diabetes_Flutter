@@ -9,7 +9,10 @@ class ActivityBlock extends ConsumerStatefulWidget {
   final String value;
   final String subvalue;
   const ActivityBlock(
-      {super.key, required this.activityName, required this.value,required this.subvalue});
+      {super.key,
+      required this.activityName,
+      required this.value,
+      required this.subvalue});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ActivityBlockState();
@@ -19,6 +22,7 @@ class _ActivityBlockState extends ConsumerState<ActivityBlock> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      splashColor: Colors.transparent,
       onTap: () {},
       child: Container(
         height: MediaQuery.of(context).size.height / hei(context, 80),
@@ -48,7 +52,9 @@ class _ActivityBlockState extends ConsumerState<ActivityBlock> {
                           fontSize: 13,
                           fontFamily: "poppins"),
                     ),
-                    const SizedBox(width: 7.5,),
+                    const SizedBox(
+                      width: 7.5,
+                    ),
                     ResponsiveText(
                       text: widget.subvalue,
                       style: const TextStyle(
@@ -61,7 +67,13 @@ class _ActivityBlockState extends ConsumerState<ActivityBlock> {
               ],
             ),
             Image.asset(
-              "assets/images/droplets.png",
+              widget.activityName == "Glucose"
+                  ? "assets/images/droplets.png"
+                  : widget.activityName == "Activity"
+                      ? "assets/images/activity.png"
+                      : widget.activityName == "Pills"
+                          ? "assets/images/pill.png"
+                          : "assets/images/apple.png",
               height: 30,
               width: 30,
             )
