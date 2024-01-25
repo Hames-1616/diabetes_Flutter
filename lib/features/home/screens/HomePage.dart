@@ -173,7 +173,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 margin: const EdgeInsets.all(30),
                 height: 250,
                 width: MediaQuery.of(context).size.width,
-                child: linChart(isShowingMainData: true))
+                child: const linChart(isShowingMainData: true))
             ],
           ),
         ));

@@ -95,8 +95,8 @@ class linChart extends StatelessWidget {
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 14,
+      fontFamily: "poppins",
+      fontSize: 12,
     );
     String text;
     switch (value.toInt()) {
@@ -131,8 +131,8 @@ class linChart extends StatelessWidget {
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
+      fontFamily: "poppins",
+      fontSize: 13,
     );
     Widget text;
     switch (value.toInt()) {
