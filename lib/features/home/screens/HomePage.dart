@@ -2,6 +2,8 @@ import 'package:diabetes_app/core/dimensions.dart';
 import 'package:diabetes_app/core/responsive_text.dart';
 import 'package:diabetes_app/core/themes.dart';
 import 'package:diabetes_app/features/home/components/Activity_block.dart';
+import 'package:diabetes_app/features/home/components/lineChart.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -166,7 +168,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                     )
                   ],
                 ),
-              )
+              ),
+              SizedBox(height: 20,),
+              Container(
+                height: 350,
+                width: MediaQuery.of(context).size.width,
+                child: linChart(isShowingMainData: true))
             ],
           ),
         ));
