@@ -168,12 +168,13 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 40,),
+              // const SizedBox(height: 40,),
               Container(
-                margin: const EdgeInsets.all(30),
+                margin: const EdgeInsets.only(left: 30,right: 30),
                 height: 250,
                 width: MediaQuery.of(context).size.width,
-                child: const linChart(isShowingMainData: true))
+                child: BarChartSample1()
+                )
             ],
           ),
         ));
