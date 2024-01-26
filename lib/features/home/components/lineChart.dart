@@ -101,19 +101,19 @@ class linChart extends StatelessWidget {
     String text;
     switch (value.toInt()) {
       case 1:
-        text = '1m';
+        text = '0';
         break;
       case 2:
-        text = '2m';
+        text = '40';
         break;
       case 3:
-        text = '3m';
+        text = '80';
         break;
       case 4:
-        text = '5m';
+        text = '120';
         break;
       case 5:
-        text = '6m';
+        text = '160';
         break;
       default:
         return Container();
