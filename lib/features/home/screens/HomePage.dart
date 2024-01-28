@@ -170,10 +170,35 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
               // const SizedBox(height: 40,),
               Container(
-                margin: const EdgeInsets.only(left: 30,right: 30),
-                height: 250,
+                decoration: BoxDecoration(
+                  color: secondaryColor,
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                margin: const EdgeInsets.only(left: 30,right: 30,top: 30),
+                
+                height: MediaQuery.of(context).size.height/hei(context, 300),
                 width: MediaQuery.of(context).size.width,
-                child: BarChartSample1()
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.all(20),
+                      child: ResponsiveText(
+                        text: "Blood Sugar",
+                        style: const TextStyle(
+                          fontFamily: "poppins",
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height/hei(context, 230),
+                      width: MediaQuery.of(context).size.width,
+                      child: BarChartSample1()),
+                  ],
+                )
                 )
             ],
           ),
