@@ -174,7 +174,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   color: secondaryColor,
                   borderRadius: BorderRadius.circular(20)
                 ),
-                margin: const EdgeInsets.only(left: 30,right: 30,top: 30),
+                margin: const EdgeInsets.only(left: 20,right: 20,top: 15),
                 
                 height: MediaQuery.of(context).size.height/hei(context, 300),
                 width: MediaQuery.of(context).size.width,
