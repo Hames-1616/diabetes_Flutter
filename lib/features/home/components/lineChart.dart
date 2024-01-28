@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:math';
 
 import 'package:diabetes_app/core/themes.dart';
@@ -16,7 +15,7 @@ class BarChartSample1 extends StatefulWidget {
       ];
 
   final Color barBackgroundColor =
-      primaryColor.withOpacity(0.3);
+      primaryColor;
   final Color barColor = Colors.white;
   final Color touchedBarColor = greenAccent;
 
