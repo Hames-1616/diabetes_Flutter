@@ -4,6 +4,7 @@ import 'package:diabetes_app/features/auth/controller/authRepoController.dart';
 import 'package:diabetes_app/features/home/screens/HomePage.dart';
 import 'package:diabetes_app/features/auth/screens/Info_Intake.dart';
 import 'package:diabetes_app/features/auth/screens/login_screen.dart';
+import 'package:diabetes_app/features/home/screens/mainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,7 +40,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: darkmode,
-      home: login ? basicInfo ? const HomePage() : const PreferencesInfo() : const LoginScreen()
+      home: login ? basicInfo ? Home() : const PreferencesInfo() : const LoginScreen()
     );
   }
 }
