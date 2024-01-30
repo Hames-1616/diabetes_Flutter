@@ -27,7 +27,7 @@ class _HomeState extends State<Home>  with TickerProviderStateMixin {
     return Scaffold(
       extendBody: true,
       body: Container(
-        child: ,
+        // child: ,
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(bottom: 10),
