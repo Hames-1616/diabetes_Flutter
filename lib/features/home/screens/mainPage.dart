@@ -1,5 +1,3 @@
-
-
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +6,7 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-class _HomeState extends State<Home>  with TickerProviderStateMixin {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
   var _selectedTab = _SelectedTab.home;
 
   void _handleIndexChanged(int i) {
@@ -16,6 +14,8 @@ class _HomeState extends State<Home>  with TickerProviderStateMixin {
       _selectedTab = _SelectedTab.values[i];
     });
   }
+
+  List<Widget> homes = [Home(),Home(),Home(),Home()];
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,8 @@ class _HomeState extends State<Home>  with TickerProviderStateMixin {
     return Scaffold(
       extendBody: true,
       body: Container(
-        // child: ,
-      ),
+          // child: ,
+          ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(bottom: 10),
         child: DotNavigationBar(
