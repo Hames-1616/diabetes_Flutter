@@ -7,15 +7,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with TickerProviderStateMixin {
-  var _selectedTab = _SelectedTab.home;
+  var _selectedTab = 0;
 
   void _handleIndexChanged(int i) {
     setState(() {
-      _selectedTab = _SelectedTab.values[i];
+      _selectedTab = i;
     });
   }
 
-  List<Widget> homes = [Home(),Home(),Home(),Home()];
+  List<Widget> homes = [Home(), Home(), Home(), Home()];
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     );
     return Scaffold(
       extendBody: true,
-      body: Container(
-          // child: ,
-          ),
+      body: homes[_selectedTab],
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(bottom: 10),
         child: DotNavigationBar(
           margin: EdgeInsets.only(left: 10, right: 10),
-          currentIndex: _SelectedTab.values.indexOf(_selectedTab),
+          currentIndex: _selectedTab,
           dotIndicatorColor: Colors.white,
           unselectedItemColor: Colors.grey[300],
           splashBorderRadius: 50,
