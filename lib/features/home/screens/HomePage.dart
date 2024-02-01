@@ -199,7 +199,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                       child: BarChartSample1()),
                   ],
                 )
-                )
+                ),
+                Container(height: 500,)
             ],
           ),
         ));
