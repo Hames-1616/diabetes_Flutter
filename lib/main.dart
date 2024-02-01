@@ -40,7 +40,7 @@ class _MyAppState extends ConsumerState<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: darkmode,
-      home: login ? basicInfo ? Home() : const PreferencesInfo() : const LoginScreen()
+      home: login ? basicInfo ? const Home() : const PreferencesInfo() : const LoginScreen()
     );
   }
 }
