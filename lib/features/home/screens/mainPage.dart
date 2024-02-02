@@ -42,13 +42,9 @@ class _HomeState extends ConsumerState<Home> {
 
           /// Likes
           DotNavigationBarItem(
-              icon: const Icon(Icons.favorite_border),
+              icon: const Icon(Icons.stacked_bar_chart_sharp),
               ),
 
-          /// Search
-          DotNavigationBarItem(
-              icon: const Icon(Icons.search),
-              ),
 
           /// Profile
           DotNavigationBarItem(

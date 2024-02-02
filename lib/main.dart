@@ -1,7 +1,6 @@
 import 'package:diabetes_app/core/providers.dart';
 import 'package:diabetes_app/core/themes.dart';
 import 'package:diabetes_app/features/auth/controller/authRepoController.dart';
-import 'package:diabetes_app/features/home/screens/HomePage.dart';
 import 'package:diabetes_app/features/auth/screens/Info_Intake.dart';
 import 'package:diabetes_app/features/auth/screens/login_screen.dart';
 import 'package:diabetes_app/features/home/screens/mainPage.dart';
