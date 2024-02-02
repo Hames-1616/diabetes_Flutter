@@ -26,8 +26,8 @@ class _HomeState extends ConsumerState<Home> {
       body: pages[_currentIndex],
       bottomNavigationBar: DotNavigationBar(
         itemPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-        backgroundColor: Colors.white70,
-        selectedItemColor: primaryColor,
+        backgroundColor: teritaryColor,
+        selectedItemColor: Colors.white,
         unselectedItemColor: Colors.black45,
         marginR: const EdgeInsets.only(left: 20,right: 20),
         paddingR: const EdgeInsets.only(top: 5,bottom: 5,right: 10,left: 10),
