@@ -18,7 +18,7 @@ class _HomeState extends ConsumerState<Home> {
     });
   }
 
-  final pages = [const HomePage(), Container(), Container(), Container()];
+  final pages = [const HomePage(), Container(),Container()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
