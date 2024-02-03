@@ -54,4 +54,16 @@ class AuthRepo {
       return left(Failure(e.response?.data["detail"]));
     }
   }
+
+    FutureEither<String> basicInfoVerify(BasicInfo medDetails) async {
+    try {
+      dio.options.headers['token'] = await ref.watch(stringToken.future);
+      await dio.post("$url/basicInfoVerify");
+      final basic = await SharedPreferences.getInstance();
+      await basic.setBool("basicToken",true);
+      return right("");
+    } on DioException catch (e) {
+      return left(Failure(e.response?.data["detail"]));
+    }
+  }
 }
