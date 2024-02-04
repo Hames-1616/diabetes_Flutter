@@ -55,7 +55,7 @@ class AuthRepo {
     }
   }
 
-    FutureEither<String> basicInfoVerify(BasicInfo medDetails) async {
+    FutureEither<String> basicInfoVerify() async {
     try {
       dio.options.headers['token'] = await ref.watch(stringToken.future);
       await dio.post("$url/basicInfoVerify");

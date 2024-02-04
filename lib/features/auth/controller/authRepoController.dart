@@ -7,6 +7,7 @@ import 'package:diabetes_app/features/auth/repos/auth_repo.dart';
 import 'package:diabetes_app/features/home/screens/HomePage.dart';
 import 'package:diabetes_app/features/auth/screens/Info_Intake.dart';
 import 'package:diabetes_app/features/auth/screens/login_screen.dart';
+import 'package:diabetes_app/features/home/screens/mainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,11 +39,20 @@ class AuthRepoController extends StateNotifier<bool> {
   void loginaccount(String email, String password, BuildContext context) async {
     state = true;
     final s = await authrepo.loginUser(email, password);
+    await authrepo.basicInfoVerify();
     state = false;
     s.fold((l) {
       showSnackbar(context, l.message);
-    }, (r) {
-      Navigator.pushReplacement(context, createRoute(const PreferencesInfo()));
+    }, (r) async {
+      final basic = await SharedPreferences.getInstance();
+      final s = basic.getBool("basicToken");
+      s == true
+          // ignore: use_build_context_synchronously
+          ? Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const Home()))
+          // ignore: use_build_context_synchronously
+          : Navigator.pushReplacement(
+              context, createRoute(const PreferencesInfo()));
     });
   }
 
